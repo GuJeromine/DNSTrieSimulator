@@ -6,10 +6,10 @@
 
 typedef struct Nodo
 {
-    char conteudo[100]; // conteudo È o IP que ser· marcado no final da trie
-    int marcanodo; // marcanodo È a flag que marca o final da trie
+    char conteudo[100]; // conteudo √© o IP que ser√° marcado no final da trie
+    int marcanodo; // marcanodo √© a flag que marca o final da trie
     struct Nodo* prox; // prox para acessar o prox
-    struct Nodo* filho[tam]; // filho que È o da raiz (pai)
+    struct Nodo* filho[tam]; // filho que √© o da raiz (pai)
 }Nodo;
 
 Nodo* CriaNodo()
@@ -18,8 +18,8 @@ Nodo* CriaNodo()
 
     struct Nodo *r = (Nodo *)malloc(sizeof(Nodo)); // aloca o nodo r
 
-    r->marcanodo = 0; // comeÁa marcando nodo como 0
-    r->prox = NULL; // comeÁa marcando o prox como NULL
+    r->marcanodo = 0; // come√ßa marcando nodo como 0
+    r->prox = NULL; // come√ßa marcando o prox como NULL
 
     for (i = 0; i < tam; i++)
         r->filho[i] = NULL; // marca os filhos da raiz como NULL
@@ -50,7 +50,7 @@ int busca(Nodo *r, char *s) // funcao que busca a trie
             printf("endereco nao encontrado.\n"); // imprime que nao encontrou
             return; // return para sair
         }
-        else // se est· marcado
+        else // se est√° marcado
         {
             printf("%s\n", r->conteudo); // imprime o conteudo(IP)
             return; // return para sair
@@ -59,10 +59,10 @@ int busca(Nodo *r, char *s) // funcao que busca a trie
 
     else if(r->filho[*s - 'a'] == NULL) // se o filho for igual a NULL
     {
-        printf("endereco nao encontrado.\n"); // imprime endereÁo n„o encontrado
+        printf("endereco nao encontrado.\n"); // imprime endere√ßo n√£o encontrado
         return; // return para sair
     }
-    else // se n„o
+    else // se n√£o
     {
         r = r->filho[*s - 'a']; // percorre a trie
         s++; // percorre a string
@@ -73,7 +73,7 @@ int busca(Nodo *r, char *s) // funcao que busca a trie
 
 void insere(Nodo *r, char *s, char *conteudo) // funcao que insere na trie
 {
-    Nodo* raiz = r; // comeÁa pelo nodo raiz
+    Nodo* raiz = r; // come√ßa pelo nodo raiz
 
     if(*s == '.') // se encontrar .
     {
@@ -114,7 +114,7 @@ void inverte(char *s) // funcao para inverter a string
     int j=0; // j para percorrer normalmente
     int tamanho = strlen(s); // pega o tamanho da string
 
-    for(i=tamanho-1; i>=0;i--) // esse for percorre de tr·s para frente
+    for(i=tamanho-1; i>=0;i--) // esse for percorre de tr√°s para frente
     {
         invertida[j] = s[i]; // invertida[inicio] = s[fim]
         j++;
@@ -132,7 +132,7 @@ void liberatrie(Nodo* r)
     r->prox = NULL; // marca o prox como NULL
     for (i = 0; i < tam; i++)
     r->filho[i] = NULL; // marca os filhos da raiz como NULL
-    free(r); // libera memÛria do nodo raiz
+    free(r); // libera mem√≥ria do nodo raiz
 }
 
 int main()
@@ -143,16 +143,16 @@ int main()
 
     file = fopen("dns.txt", "r"); // abre o arquivo como leitura
 
-    char s[100]; // string que ser· utilizada nas funÁıes
-    char conteudo[100]; // conteudo que È o IP que ser· marcado no final da string/trie
+    char s[100]; // string que ser√° utilizada nas fun√ß√µes
+    char conteudo[100]; // conteudo que √© o IP que ser√° marcado no final da string/trie
 
-    while(fscanf(file,"%s %s",s,conteudo) != EOF) // pega o endereÁo e depois o IP atÈ chegar no final do arquivo
+    while(fscanf(file,"%s %s",s,conteudo) != EOF) // pega o endere√ßo e depois o IP at√© chegar no final do arquivo
     {
         inverte(s); // inverte a string
         insere(r,s,conteudo); // insere na trie
     }
 
-    while(*s != '*') // enquanto n„o digitar *
+    while(*s != '*') // enquanto n√£o digitar *
     {
         scanf("%s", s); // le a string do usuario
         inverte(s); // inverte a string
@@ -161,7 +161,7 @@ int main()
     }
 
     fclose(file); // fecha o arquivo
-    liberatrie(r); // libera a memÛria da trie
+    liberatrie(r); // libera a mem√≥ria da trie
 
     return 0;
 }
